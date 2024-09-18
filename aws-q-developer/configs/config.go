@@ -6,23 +6,41 @@ import (
 )
 
 type Config struct {
-	DatabaseURL string
-	Port        string
+	DBUser     string
+	DBPassword string
+	DBHost     string
+	DBPort     string
+	DBName     string
+	DBSSLMode  string
+	Port       string
 }
 
 func LoadConfig() (*Config, error) {
-	databaseURL, ok := os.LookupEnv("DATABASE_URL")
-	if !ok {
-		return nil, fmt.Errorf("DATABASE_URL environment variable not set")
+	config := &Config{
+		DBUser:     os.Getenv("DB_USER"),
+		DBPassword: os.Getenv("DB_PASSWORD"),
+		DBHost:     os.Getenv("DB_HOST"),
+		DBPort:     os.Getenv("DB_PORT"),
+		DBName:     os.Getenv("DB_NAME"),
+		DBSSLMode:  os.Getenv("DB_SSL"),
+		Port:       os.Getenv("PORT"),
 	}
 
-	port, ok := os.LookupEnv("PORT")
-	if !ok {
-		port = "8080"
+	if config.DBUser == "" || config.DBPassword == "" || config.DBHost == "" || config.DBPort == "" || config.DBName == "" {
+		return nil, fmt.Errorf("missing required database environment variables")
 	}
 
-	return &Config{
-		DatabaseURL: databaseURL,
-		Port:        port,
-	}, nil
+	if config.DBSSLMode == "" {
+		config.DBSSLMode = "disable"
+	}
+
+	if config.Port == "" {
+		config.Port = "8080"
+	}
+
+	return config, nil
+}
+
+func (c *Config) GetDatabaseURL() string {
+	return fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s", c.DBHost, c.DBPort, c.DBUser, c.DBPassword, c.DBName, c.DBSSLMode)
 }

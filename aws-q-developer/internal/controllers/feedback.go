@@ -27,5 +27,20 @@ func (c *FeedbackController) CreateFeedback(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
-	w.WriteHeader(http.StatusCreated)
+	// Prepare the response
+	response := map[string]string{
+		"status":  "success",
+		"message": "Feedback message received",
+	}
+
+	// Set the content type to JSON
+	w.Header().Set("Content-Type", "application/json")
+
+	// Set the status code
+	w.WriteHeader(http.StatusOK)
+
+	// Encode and send the JSON response
+	if err := json.NewEncoder(w).Encode(response); err != nil {
+		http.Error(w, "Error encoding response", http.StatusInternalServerError)
+	}
 }

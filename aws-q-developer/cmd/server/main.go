@@ -20,11 +20,15 @@ func main() {
 		log.Fatalf("Failed to load configuration: %v", err)
 	}
 
-	db, err := sql.Open("postgres", config.DatabaseURL)
+	db, err := sql.Open("postgres", config.GetDatabaseURL())
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
 	defer db.Close()
+
+	if err := db.Ping(); err != nil {
+		log.Fatalf("Failed to ping database: %v", err)
+	}
 
 	repo := repositories.NewPostgresFeedbackRepository(db)
 	service := services.NewFeedbackService(repo)

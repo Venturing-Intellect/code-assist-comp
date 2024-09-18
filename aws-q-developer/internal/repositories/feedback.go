@@ -18,6 +18,10 @@ func NewPostgresFeedbackRepository(db *sql.DB) *PostgresFeedbackRepository {
 }
 
 func (r *PostgresFeedbackRepository) CreateFeedback(feedback *models.Feedback) error {
-	// Implement the database insertion logic here
+	query := `INSERT INTO feedbacks (email, message) VALUES ($1, $2)`
+	_, err := r.db.Exec(query, feedback.Email, feedback.Message)
+	if err != nil {
+		return err
+	}
 	return nil
 }
