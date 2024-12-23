@@ -4,13 +4,13 @@ We believe AI coding tools will change the software creation process in huge way
 
 ## What We Evaluate
 
-While AI coding tools often advertise their functionalities like "inline edits" or "large context," these are not direct coding features. We identified specific aspects of coding and tested each tool to see how they behave in these categories.
+While AI coding tools often advertise their features like "inline edits" or "large context", these do not always translate to better coding. Instead, we identified specific aspects of coding and tested each tool to see how they behave in these categories.
 
 There are two main categories:
 * **Integration with Human Workflow**
   * Evaluates the ease of integrating the AI tool into a typical human developer workflow.
 * **AI Coding Score**
-  * Evaluates aspects like handling single files, multiple files, documentation, and following architecture patterns.
+  * Evaluates aspects like handling single files, multiple files, documentation, and following architecture patterns etc.
 
 For the detailed list, see this wiki page: [Evaluation Template 1.0](https://github.com/Venturing-Intellect/code-assist-comp/wiki/Evaluation-Template-1.0).
 
@@ -44,9 +44,9 @@ Probably the most famous AI coding assistant. It integrates seamlessly into IDEs
 
 **GitHub Copilot Workspace** ([https://githubnext.com/projects/copilot-workspace](https://githubnext.com/projects/copilot-workspace))  
 
-* It's not directly comparable to the previously evaluated solutions, as it's a web-based software project management tool. However, it generates code and works with your project, qualifying it as an AI coder.
+* It's NOT directly comparable to the previously evaluated solutions, as it's a web-based software project management tool. However, it generates code and works with your project, qualifying it as an AI coder.
 * It's NOT a chatbot inside your IDE—you would still use your favorite chatbot in addition to Workspaces.
-* It’s a tool for planning work before diving into the IDE to finish coding.
+* It IS a tool for planning work before diving into the IDE to finish coding.
 
 [GitHub Copilot Workspace Full Review](https://github.com/Venturing-Intellect/code-assist-comp/wiki/Evaluation-of-Github-Copilot-Workspace)
 
